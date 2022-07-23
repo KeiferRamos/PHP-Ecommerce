@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+
+  background: #e0e8e8;
+  display: grid;
+  justify-content: center;
+}
+
+nav {
+  height: 100px;
+  padding: 10px;
+  gap: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+button {
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background: #000;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.title {
+  margin-right: auto;
+}
+
+.title > h1 {
+  border-bottom: 3px solid #000;
+  padding-bottom: 5px;
+}
+
+.link-list {
+  display: flex;
+  gap: 10px;
+}
+
+.profile {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  position: relative;
+}
+
+.profile-settings {
+  width: 200px;
+  right: -5px;
+  top: 150%;
+  position: absolute;
+  content: "";
+  background: #fff;
+  padding: 10px;
+  display: none;
+}
+
+.profile-settings > div {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border: 2px solid #bebebe;
+  margin-top: 5px;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  right: 2px;
+  top: 130%;
+  transform: rotate(45deg);
+  position: absolute;
+  content: "";
+  background: #fff;
+  display: none;
+}
+
+.show-settings > .profile-settings,
+.show-settings > .arrow {
+  display: block;
+}
+
+.profile > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.products > div {
+  border: 1px solid #000;
+  display: inline-block;
+  padding: 10px;
+  width: 340px;
+}
+
+.products div > img {
+  max-height: 150px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.background {
+  width: 500px;
+  height: 440px;
+  position: relative;
+}
+
+.background > header {
+  position: absolute;
+  top: 50%;
+  padding: 40px;
+  color: #fff;
+  transform: translate(0, -50%);
+  z-index: 100;
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  width: 40%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.background > img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.login-form > p {
+  background: #3c4b4d;
+  color: #fff;
+  padding: 10px;
+  margin-top: 20px;
+  width: 300px;
+}
+
+.input-field {
+  position: relative;
+  height: 50px;
+  width: 300px;
+  background: #fff;
+  border-radius: 5px;
+}
+
+.input-field > input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  z-index: 10;
+  background: transparent;
+  position: absolute;
+}
+
+.input-field > label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #a5abab;
+  padding-left: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+}
+
+.login-btn {
+  width: 100%;
+}
+
+.hide-label {
+  opacity: 0;
+}
+
+.password-checkbox {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+}
+
+.password-checkbox > input {
+  margin: 0;
+}
+
+@media (max-width: 850px) {
+  .background {
+    display: none;
+    overflow: hidden;
+  }
+}
