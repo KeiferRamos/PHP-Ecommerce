@@ -17,6 +17,7 @@ body {
 }
 
 nav {
+  width: 100%;
   height: 100px;
   padding: 10px;
   gap: 20px;
@@ -39,7 +40,7 @@ input,
 button {
   border: none;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 button {
@@ -48,18 +49,23 @@ button {
   margin-top: 10px;
 }
 
+.wrapper {
+  max-width: 1400px;
+}
+
 .title {
   margin-right: auto;
 }
 
 .title > h1 {
-  border-bottom: 3px solid #000;
+  border-bottom: 3px solid;
   padding-bottom: 5px;
 }
 
 .link-list {
   display: flex;
-  gap: 10px;
+  gap: 20px;
+  padding: 0 10px;
 }
 
 .profile {
@@ -80,12 +86,19 @@ button {
   display: none;
 }
 
-.profile-settings > div {
+.profile-settings > button {
   display: flex;
+  width: 100%;
   gap: 10px;
-  padding: 10px;
   border: 2px solid #bebebe;
-  margin-top: 5px;
+  background: #fff;
+  color: #000;
+}
+
+.profile-settings > button:hover {
+  background: #000;
+  border: 2px solid;
+  color: #fff;
 }
 
 .arrow {
@@ -120,7 +133,7 @@ button {
 }
 
 .products > div {
-  border: 1px solid #000;
+  border: 1px solid;
   display: inline-block;
   padding: 10px;
   width: 340px;
@@ -236,6 +249,16 @@ button {
 
 .password-checkbox > input {
   margin: 0;
+}
+
+.dark-mode {
+  background: #000;
+  color: #fff;
+}
+
+.light-button {
+  background: #fff;
+  color: #000;
 }
 
 @media (max-width: 850px) {

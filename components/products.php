@@ -22,7 +22,7 @@
                     <img src='{$src},{$imageContent}' />
                     <p>{$data['name']}</p>
                     <p>₱ {$data['price']}</p>
-                    <button>add to cart</button>
+                    <button class='product-btn'>add to cart</button>
                 </div>
                 <br/>
             ";
