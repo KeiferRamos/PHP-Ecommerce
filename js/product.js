@@ -3,6 +3,7 @@ const profileContainer = document.querySelector(".profile");
 const settings = document.querySelector(".profile-settings");
 const toggler = document.getElementById("toggle-mode");
 const productBtns = document.querySelectorAll(".product-btn");
+const searchbar = document.getElementById("searchbar");
 
 user_profile.addEventListener("click", () => {
   if (!profileContainer.classList.contains("show-settings")) {
@@ -31,4 +32,19 @@ toggler.addEventListener("click", (e) => {
       btn.classList.remove("light-button");
     });
   }
+});
+
+searchbar.addEventListener("input", ({ target }) => {
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("POST", `../includes/filter.php?query=${target.value}`, true);
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      const recommended = document.getElementById("recommended");
+      recommended.innerHTML = xhr.response ? xhr.response : "";
+    }
+  };
+
+  xhr.send();
 });

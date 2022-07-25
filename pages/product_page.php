@@ -7,6 +7,7 @@
         <div class="wrapper">
             <?php
                 include "../components/navbar.php";
+                include "../components/filter.php";
             ?>
             <div class="products">
                 <?php

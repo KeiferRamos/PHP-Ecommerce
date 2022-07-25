@@ -49,10 +49,6 @@ button {
   margin-top: 10px;
 }
 
-.wrapper {
-  max-width: 1400px;
-}
-
 .title {
   margin-right: auto;
 }
@@ -125,24 +121,82 @@ button {
   overflow: hidden;
 }
 
+.wrapper {
+  max-width: 1200px;
+  padding: 10px;
+}
+
 .products {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
+  margin-top: 10px;
 }
 
 .products > div {
   border: 1px solid;
-  display: inline-block;
   padding: 10px;
-  width: 340px;
+  min-width: 300px;
+  flex: 1;
 }
 
 .products div > img {
   max-height: 150px;
   width: 100%;
   object-fit: cover;
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-form div > select {
+  outline: none;
+  height: 30px;
+}
+
+.searchbar {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.searchbar > input {
+  width: 100%;
+  margin: 0;
+  outline: none;
+  border-bottom: 2px solid #000;
+}
+
+.searchbar > i {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-right: 10px;
+  transform: translate(0, -50%);
+}
+
+.recommended {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  background: #fff;
+}
+
+.recommended > p {
+  border: 1px solid #bebebe;
+  padding: 10px;
+  margin: 5px;
+  color: #000;
+}
+
+.recommended > p:hover {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
 }
 
 .login-page {
@@ -265,5 +319,28 @@ button {
   .background {
     display: none;
     overflow: hidden;
+  }
+}
+
+@media (max-width: 500px) {
+  .filter-form {
+    padding: 10px;
+  }
+  .searchbar {
+    flex: auto;
+    width: 100%;
+  }
+  .filter-form > div {
+    display: flex;
+    width: 100%;
+  }
+
+  .filter-form div > label,
+  .filter-form div > select {
+    flex: 1;
+    height: 30px;
+  }
+  .products {
+    padding: 10px;
   }
 }
