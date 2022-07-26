@@ -13,18 +13,19 @@
         }
     }
 
-    foreach($datas as $data){
+    $mappedItem = array_map(function($data){
         $src = "data:image/jpg;charset=utf8;base64";
         $imageContent = base64_encode($data['image']);
 
-        echo "
-                <div class='product'>
-                    <img src='{$src},{$imageContent}' />
-                    <p>{$data['name']}</p>
-                    <p>₱ {$data['price']}</p>
-                    <button class='product-btn'>add to cart</button>
+        return "
+                <div class='product' id='{$data['id']}'>
+                    <img id='{$data['id']}' src='{$src},{$imageContent}' />
+                    <p id='{$data['id']}'>{$data['name']}</p>
+                    <p id='{$data['id']}'>₱ {$data['price']}</p>
+                    <button id='{$data['name']}' class='add-btn'>add to cart</button>
                 </div>
-                <br/>
             ";
-    }
+    },$datas);
+       
+    echo join("", $mappedItem);
 ?>

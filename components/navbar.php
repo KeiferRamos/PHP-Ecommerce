@@ -21,9 +21,9 @@
                     src='https://avatars.dicebear.com/api/initials/{$_SESSION['username']}.svg'>"
         ?>
         <div class="arrow"></div>
-        <form action="../includes/signout.php" method="POST" class="profile-settings">
+        <form action="../includes/signout.php" method="POST" class="profile-settings settings">
             <?php 
-                echo "<p>{$_SESSION['username']}</p>"
+                echo "<p class='username settings'>{$_SESSION['username']}</p>"
             ?>
             <button>
                 <i class="fa-solid fa-user"></i>
