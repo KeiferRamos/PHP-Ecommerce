@@ -18,7 +18,13 @@
                         <article>
                             <header>
                                 <h1>What is {$row['name']}</h1>
-                                <button>add to cart</button>
+                                <button 
+                                    class='add-btn' 
+                                    onclick='addTocart()'
+                                    data-url='../includes/addItem.php'
+                                    data-id='{$row['id']}'>
+                                        add to cart
+                                </button>
                             </header>
                             <br/>
                             {$row['info']}

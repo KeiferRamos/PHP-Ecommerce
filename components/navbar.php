@@ -17,26 +17,30 @@
     <div class="profile">
         <?php
             session_start();
-            echo "<img id='user-profile' 
-                    src='https://avatars.dicebear.com/api/initials/{$_SESSION['username']}.svg'>"
+            echo "<img 
+                    id='user-profile' 
+                    onclick='showSettings()'
+                    src='https://avatars.dicebear.com/api/initials/{$_SESSION['username']}.svg'
+                    alt='user profile'
+                    >"
         ?>
         <div class="arrow"></div>
-        <form action="../includes/signout.php" method="POST" class="profile-settings settings">
+        <div class="profile-settings settings">
             <?php 
                 echo "<p class='username settings'>{$_SESSION['username']}</p>"
             ?>
-            <button>
+            <div>
                 <i class="fa-solid fa-user"></i>
                 <p>edit profile</p>
-            </button>
-            <button id="toggle-mode">
+            </div>
+            <div id="toggler" onclick="toggleSettings()">
                 <i class="fa-solid fa-moon"></i>
                 <p>dark mode</p>
-            </button>
-            <button name="signout" type="submit">
+            </div>
+            <div onclick="signout()">
                 <i class="fa-solid fa-arrow-left"></i>
                 <p>sign-out</p>
-            </button>
+            </div>
         </form>
     </div>
 </nav>

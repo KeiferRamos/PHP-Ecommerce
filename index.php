@@ -71,7 +71,6 @@
                         <a href="./pages/register_page.php">create.</a>
                     </p>
                 </div>
-                
             </form>
         </div>
         <script src="./js/login.js?v=<?php echo time(); ?>"></script>

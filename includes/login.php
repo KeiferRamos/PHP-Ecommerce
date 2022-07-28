@@ -19,7 +19,7 @@
                     $password_verified = password_verify($password,$row['password']);
                     if($password_verified){
                         $_SESSION['username'] = $row['username'];
-                        $_SESSION['user_id'] = $row['id'];
+                        $_SESSION['id'] = $row['id'];
                         header("location: ../index.php?success=true");
                     }else{
                         header("location: ../index.php?success=false&error=incorrect_password&username={$username}");

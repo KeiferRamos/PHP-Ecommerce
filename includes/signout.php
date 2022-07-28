@@ -1,7 +1,5 @@
 <?php
-    if(isset($_POST['signout'])){
-        session_start();
-        session_destroy();
-        header("location: ../index.php");
-    }
+    session_start();
+    session_destroy();
+    echo "http://localhost/e-commerce/index.php";
 ?>

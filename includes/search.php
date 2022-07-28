@@ -8,7 +8,7 @@
 
     if($check_result > 0 && $queryString){
         while($row = mysqli_fetch_assoc($result)){
-            echo "<p class='recommended-item' id={$row['id']}>{$row['name']}</p>";
+            echo "<p class='recommended-item' onclick='displaySelected()' id={$row['id']}>{$row['name']}</p>";
         }
     }
 ?>

@@ -1,13 +1,13 @@
 <form class="filter-form">
-    <div class="searchbar">
+    <div class="searchbar" oninput="searchQuery()">
         <input id="searchbar" type="text" placeholder="e.g Banana">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <div id="recommended" class="recommended"></div>
+        <div class="recommended"></div>
     </div>
 
     <div>
         <label for="categories">categories:</label>
-        <select name="categories" id="categories">
+        <select name="categories" id="categories" onchange="filterItem()">
             <option value="All">All</option>
             <option value="veggie">Veggies</option>
             <option value="fruit">Fruits</option>
@@ -16,7 +16,7 @@
 
     <div>
         <label for="price-range">price range:</label>
-        <select name="price-range" id="price-range">
+        <select name="price-range" id="price-range" onchange="filterItem()">
             <option value="All">All</option>
             <option value="1-5">₱1 - ₱5</option>
             <option value="6-10">₱6 - ₱10</option>
@@ -26,7 +26,7 @@
     
     <div>
         <label for="sort">sort by</label>
-        <select name="sort" id="sort">
+        <select name="sort" id="sort" onchange="filterItem()">
             <option value="default">default</option>
             <option value="h-l">Highest to lowest</option>
             <option value="l-h">Lowest to Highest</option>
