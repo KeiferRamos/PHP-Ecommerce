@@ -25,14 +25,26 @@
 
     $mappedDatas = array_map(function($data){
         $imgSrc = "https://avatars.dicebear.com/api/initials/{$data['username']}.svg";
+        $displayIcons = "none;";
+
+        if($_SESSION['username'] == $data['username']){
+           $displayIcons  = "block;";
+        }
+
         return "
             <div>
                 <img src={$imgSrc} alt='user-profile' />
                 <div class='user-comment'>
                     <h3>{$data['username']}</h3>
                     <p>{$data['user_comment']}</p>
-                    <i class='fa-solid fa-trash'></i>
-                    <i class='fa-solid fa-pen'></i>
+                    <div style='display: {$displayIcons}'>
+                        <i 
+                        onclick='deleteComment({$data['comment_id']})' 
+                        class='fa-solid fa-trash'
+                        >
+                        </i>
+                        <i class='fa-solid fa-pen'></i>
+                    </div>
                 </div>   
             </div>
         ";

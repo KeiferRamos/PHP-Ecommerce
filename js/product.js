@@ -164,23 +164,48 @@ function filterItem() {
 }
 
 function addComment() {
-  window.event.preventDefault();
+  const comment = document.getElementById("comment");
+  if (comment.value) {
+    window.event.preventDefault();
+    const xhr = new XMLHttpRequest();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+
+    xhr.open(
+      "POST",
+      `../includes/comment.php?comment=${comment.value}&id=${id}`,
+      true
+    );
+
+    xhr.onload = () => {
+      if (xhr.status == 200) {
+        document.getElementById("item-comments").innerHTML = xhr.response;
+        comment.value = "";
+      }
+    };
+
+    xhr.send();
+  } else {
+    return;
+  }
+}
+
+function deleteComment(id) {
   const xhr = new XMLHttpRequest();
 
-  const comment = document.getElementById("comment");
-  const urlParams = new URLSearchParams(window.location.search);
-  const id = urlParams.get("id");
+  const URLParams = new URLSearchParams(window.location.search);
+  const itemId = URLParams.get("id");
 
   xhr.open(
     "POST",
-    `../includes/comment.php?comment=${comment.value}&id=${id}`,
+    `../includes/delete_comment.php?id=${id}&item_id=${itemId}`,
     true
   );
 
   xhr.onload = () => {
     if (xhr.status == 200) {
       document.getElementById("item-comments").innerHTML = xhr.response;
-      comment.value = "";
     }
   };
 

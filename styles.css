@@ -451,13 +451,12 @@ button {
 
 .comments {
   height: calc(100vh - 120px);
-  display: grid;
   gap: 10px;
   padding: 10px 0;
-  grid-template-rows: 200px auto 100px;
 }
 
 .comments > header {
+  width: 100%;
   display: flex;
   align-items: end;
   flex-wrap: wrap;
@@ -471,6 +470,7 @@ button {
   width: 100%;
   display: flex;
   gap: 10px;
+  padding-bottom: 10px;
   flex-direction: column-reverse;
   overflow: scroll;
 }
@@ -493,7 +493,7 @@ button {
   margin: 5px 0 20px 0;
 }
 
-.user-comment > i {
+.user-comment div > i {
   font-size: 15px;
   margin-right: 5px;
   background: #fff;
@@ -524,7 +524,6 @@ button {
   width: 100%;
   min-height: 100%;
   font-size: 17px;
-  height: auto;
   resize: none;
   outline: none;
   text-align: justify;
@@ -542,6 +541,10 @@ button {
   position: absolute;
   bottom: 0;
   right: 5px;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes load {
@@ -587,5 +590,8 @@ button {
   }
   .products {
     padding: 10px;
+  }
+  .comments header > img {
+    display: none;
   }
 }
