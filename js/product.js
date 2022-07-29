@@ -163,6 +163,30 @@ function filterItem() {
   xhr.send();
 }
 
+function addComment() {
+  window.event.preventDefault();
+  const xhr = new XMLHttpRequest();
+
+  const comment = document.getElementById("comment");
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+
+  xhr.open(
+    "POST",
+    `../includes/comment.php?comment=${comment.value}&id=${id}`,
+    true
+  );
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      document.getElementById("item-comments").innerHTML = xhr.response;
+      comment.value = "";
+    }
+  };
+
+  xhr.send();
+}
+
 window.addEventListener("click", ({ target: { classList, id } }) => {
   const path = "/e-commerce/pages/product_page.php";
   if (window.location.pathname == path) {

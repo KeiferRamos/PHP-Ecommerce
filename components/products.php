@@ -38,6 +38,15 @@
             $is_liked = "user-liked";
         }
 
+         $sql3 = "SELECT * FROM comments WHERE item_id= {$data['id']};";
+        $result3 = mysqli_query($conn, $sql3);
+        $check_result3 = mysqli_num_rows($result3);
+        $comments_count = "";
+
+        if($check_result3 > 0){
+            $comments_count = $check_result3;
+        }
+
         return "
                 <div class='product' onclick='productHandler({$data['id']})'>
                     <img src='{$src},{$imageContent}' />
@@ -62,9 +71,10 @@
                                     {$likes}
                                 </span>
                             </div>
-                            <div id='reviews'>
-                                <i id='reviews' class='fa-solid fa-message'></i>
-                            </div>
+                            <a href='../pages/product_comments.php?id={$data['id']}'>
+                                <i class='fa-solid fa-message'></i>
+                                {$comments_count}
+                            </a>
                         </div>
                     </div>
                 </div>

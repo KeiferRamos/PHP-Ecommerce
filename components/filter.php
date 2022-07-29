@@ -1,6 +1,6 @@
 <form class="filter-form">
     <div class="searchbar" oninput="searchQuery()">
-        <input id="searchbar" type="text" placeholder="e.g Banana">
+        <input id="searchbar" autocomplete="off" type="text" placeholder="e.g Banana">
         <i class="fa-solid fa-magnifying-glass"></i>
         <div class="recommended"></div>
     </div>
