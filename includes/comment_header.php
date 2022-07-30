@@ -15,13 +15,13 @@
             $likes_count = mysqli_num_rows($result2);
 
             echo "
-                <header>
+                <a href='../pages/info_page.php?id={$row['id']}'>
                     <img src='{$imgSrc},{$imgcontent}' alt='product-image' />
                     <div>
                         <h1>{$row['name']}</h1>
                         <span>{$likes_count} like(s)<span>
                     </div>
-                </header>
+                </a>
             ";
         }
     }

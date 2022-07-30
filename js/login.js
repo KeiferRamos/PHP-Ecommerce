@@ -33,4 +33,11 @@ window.addEventListener("DOMContentLoaded", () => {
   inputs.forEach((input) => {
     checkInput(input);
   });
+  const Darkmode = localStorage.getItem("isDarkmode");
+  const isDark = Darkmode ? JSON.parse(Darkmode) : false;
+  if (isDark) {
+    document.body.classList.add("dark-mode");
+  } else {
+    document.body.classList.remove("dark-mode");
+  }
 });

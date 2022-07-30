@@ -16,7 +16,6 @@
     </ul>
     <div class="profile">
         <?php
-            session_start();
             echo "<img 
                     id='user-profile' 
                     onclick='showSettings()'

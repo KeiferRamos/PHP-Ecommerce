@@ -1,11 +1,11 @@
 <?php
     include "../includes/connect.php";
 
-    $item_id = $_GET['id'];
+    $item_id = $_REQUEST['itemID'];
+    $limit = $_REQUEST['limit'];
     
-
-    $sql2 = "SELECT * FROM comments WHERE item_id = $item_id;";
-    $result = mysqli_query($conn, $sql2);
+    $sql1 = "SELECT * FROM comments WHERE item_id = $item_id ORDER BY comment_id DESC LIMIT $limit;";
+    $result = mysqli_query($conn, $sql1);
     $check_result = mysqli_num_rows($result);
     $datas = [];
 
@@ -13,7 +13,16 @@
         while($row = mysqli_fetch_assoc($result)){
             array_push($datas, $row);
         }
+    }else{
+        echo "<div>
+                <p>Be the first one to comment!</p>
+            </div>";
+        return;
     }   
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
 
     $mappedDatas = array_map(function($data){
         $imgSrc = "https://avatars.dicebear.com/api/initials/{$data['username']}.svg";
@@ -31,16 +40,29 @@
                     <p>{$data['user_comment']}</p>
                     <div style='display: {$displayIcons}'>
                         <i 
-                        onclick='deleteComment({$data['comment_id']})'  
-                        class='fa-solid fa-trash'
+                            onclick='deleteComment({$data['comment_id']})'  
+                            class='fa-solid fa-trash'
                         >
                         </i>
-                        <i class='fa-solid fa-pen'></i>
+                        <i 
+                            onclick='updateComment()' 
+                            class='fa-solid fa-pen'
+                            data-comment='{$data['user_comment']}'
+                            data-cid = {$data['comment_id']}
+                        >
+                        </i>
                     </div>
                 </div>   
             </div>
         ";
     },$datas);
+
+    $sql3 = "SELECT * FROM comments WHERE item_id = $item_id;";
+    $result3 = mysqli_query($conn, $sql3);
+
+    if($check_result < mysqli_num_rows($result3)){
+        echo "<button id='viewmore' onclick='viewMore()'>view more comments</button>";
+    }
 
     echo join("", $mappedDatas);
 ?>

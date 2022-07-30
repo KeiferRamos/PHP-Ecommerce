@@ -1,4 +1,7 @@
 let timer;
+let isEditing = false;
+let commentID;
+let limit = 4;
 
 function showSettings() {
   const profileContainer = document.querySelector(".profile");
@@ -17,8 +20,10 @@ function toggleSettings() {
       <p>light mode</p>`;
 
     document.body.classList.add("dark-mode");
+    localStorage.setItem("isDarkmode", true);
   } else {
     document.body.classList.remove("dark-mode");
+    localStorage.setItem("isDarkmode", false);
 
     toggler.innerHTML = `
       <i class="fa-solid fa-moon"></i>
@@ -164,31 +169,50 @@ function filterItem() {
 }
 
 function addComment() {
+  window.event.preventDefault();
   const comment = document.getElementById("comment");
+
   if (comment.value) {
-    window.event.preventDefault();
     const xhr = new XMLHttpRequest();
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
+    const queryString = `comment=${comment.value}&id=${id}&limit=${limit}&itemID=${id}&commentId=${commentID}`;
 
-    xhr.open(
-      "POST",
-      `../includes/comment.php?comment=${comment.value}&id=${id}`,
-      true
-    );
+    if (isEditing) {
+      xhr.open("POST", `../includes/update_comment.php?${queryString}`, true);
+    } else {
+      limit += 1;
+      xhr.open("POST", `../includes/add_comment.php?${queryString}`, true);
+    }
 
     xhr.onload = () => {
       if (xhr.status == 200) {
         document.getElementById("item-comments").innerHTML = xhr.response;
         comment.value = "";
       }
+      isEditing = false;
+      commentID = "";
     };
 
     xhr.send();
   } else {
-    return;
+    document.getElementById("error-message").innerHTML = "Enter your comment!";
   }
+}
+
+function clearErrorMsg() {
+  document.getElementById("error-message").innerHTML = "";
+}
+
+function updateComment() {
+  const {
+    dataset: { comment, cid },
+  } = window.event.target;
+  isEditing = true;
+  commentID = cid;
+
+  document.getElementById("comment").value = comment;
 }
 
 function deleteComment(id) {
@@ -199,7 +223,7 @@ function deleteComment(id) {
 
   xhr.open(
     "POST",
-    `../includes/delete_comment.php?id=${id}&item_id=${itemId}`,
+    `../includes/delete_comment.php?id=${id}&itemID=${itemId}&limit=${limit}`,
     true
   );
 
@@ -211,6 +235,54 @@ function deleteComment(id) {
 
   xhr.send();
 }
+
+function renderComments() {
+  const URLParams = new URLSearchParams(window.location.search);
+  const itemId = URLParams.get("id");
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.open(
+    "POST",
+    `../includes/rendercomment.php?limit=${limit}&itemID=${itemId}`,
+    true
+  );
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      document.getElementById("item-comments").innerHTML = xhr.response;
+    }
+  };
+
+  xhr.send();
+}
+
+function viewMore() {
+  limit += 4;
+  renderComments();
+  const viewMoreBtn = document.getElementById("viewmore");
+  window.scrollTo(0, viewMoreBtn.getBoundingClientRect().bottom);
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const isDarkmode = localStorage.getItem("isDarkmode");
+  const isDark = isDarkmode ? JSON.parse(isDarkmode) : false;
+  if (isDark) {
+    const toggler = document.getElementById("toggler");
+    toggler.innerHTML = `
+      <i class="fa-solid fa-sun"></i>
+      <p>light mode</p>`;
+
+    document.body.classList.add("dark-mode");
+  } else {
+    const toggler = document.getElementById("toggler");
+    toggler.innerHTML = `
+      <i class="fa-solid fa-moon"></i>
+      <p>dark mode</p>`;
+
+    document.body.classList.remove("dark-mode");
+  }
+});
 
 window.addEventListener("click", ({ target: { classList, id } }) => {
   const path = "/e-commerce/pages/product_page.php";

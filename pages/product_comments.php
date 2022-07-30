@@ -3,27 +3,24 @@
     <?php
         include "../components/head.php";
     ?>
-    <body>
-        <div class="wrapper">
-             <?php
+    <body onload="renderComments()">
+        <div class="wrapper" >
+            <?php
                 include "../components/navbar.php";
             ?>
             <div class="comments">
                 <?php
                     include "../includes/comment_header.php";
                 ?>
-                <div id="item-comments">
-                    <?php
-                        include "../includes/rendercomment.php";
-                    ?>
-                </div>
+                <div id="item-comments"></div>
                 <form class="comment-box">
                     <?php
                         $src = "https://avatars.dicebear.com/api/initials/{$_SESSION['username']}.svg";
                         echo "<img src='{$src}' alt='user-profile'/>"
                     ?>
                     <div>
-                        <textarea id="comment" placeholder="comment here..."></textarea>
+                        <textarea id="comment" onclick="clearErrorMsg()" placeholder="comment here..."></textarea>
+                        <p id="error-message"></p>
                         <button id="send-comment" onclick="addComment()">
                             <i class="fa-solid fa-paper-plane"></i>
                         </button>

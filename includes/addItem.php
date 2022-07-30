@@ -1,8 +1,6 @@
 <?php
     include "../includes/connect.php";
 
-    session_start();
-
     $item_id = $_REQUEST['id'];
     $user_id = $_SESSION['id'];
 
