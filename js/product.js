@@ -1,7 +1,7 @@
 let timer;
 let isEditing = false;
 let commentID;
-let limit = 4;
+let limit = 2;
 
 function showSettings() {
   const profileContainer = document.querySelector(".profile");
@@ -258,10 +258,28 @@ function renderComments() {
 }
 
 function viewMore() {
-  limit += 4;
+  limit += 2;
   renderComments();
-  const viewMoreBtn = document.getElementById("viewmore");
-  window.scrollTo(0, viewMoreBtn.getBoundingClientRect().bottom);
+  const comments = document.getElementById("item-comments");
+  window.scrollTo(0, comments.scrollHeight);
+}
+
+function removeItem() {
+  const xhr = new XMLHttpRequest();
+
+  const {
+    dataset: { id },
+  } = window.event.target;
+
+  xhr.open("POST", `../includes/removeItem.php?item_id=${id}`, true);
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      document.getElementById("cart-items").innerHTML = xhr.response;
+    }
+  };
+
+  xhr.send();
 }
 
 window.addEventListener("DOMContentLoaded", () => {
