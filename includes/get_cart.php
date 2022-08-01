@@ -18,7 +18,8 @@
             array_push($datas, $row);
         }
     }else{
-        echo "<div>
+        echo "<div class='empty'>
+                <img src='https://cdni.iconscout.com/illustration/free/thumb/empty-cart-4085814-3385483.png' />
                 <p>no item in cart!</p>
             </div>";
         return;

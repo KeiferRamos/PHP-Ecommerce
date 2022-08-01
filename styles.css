@@ -454,7 +454,6 @@ button {
   gap: 10px;
   padding: 5px;
   min-height: calc(100% - 100px);
-  min-width: 680px;
 }
 
 .comments > a {
@@ -473,9 +472,9 @@ button {
 #item-comments {
   width: 100%;
   display: flex;
-  gap: 10px;
-  flex-direction: column;
-  margin-bottom: 75px;
+  gap: 5px;
+  padding-bottom: 5px;
+  flex-direction: column-reverse;
 }
 
 .comments header > img {
@@ -484,18 +483,28 @@ button {
   object-fit: cover;
 }
 
-#item-comments > div {
+.comments-container {
   display: flex;
   align-items: start;
   padding: 10px;
   gap: 10px;
-  border: 1px solid;
+  border: 2px solid;
+  position: relative;
 }
 
 .user-comment > p {
   margin: 5px 0 20px 0;
   word-break: break-all;
   max-width: 600px;
+}
+
+.user-comment > span {
+  font-size: 13px;
+  color: #aaa7a7;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 10px;
 }
 
 .user-comment div > i {
@@ -507,18 +516,15 @@ button {
   border-radius: 3px;
 }
 
-#item-comments div > img {
+.comments-container > img {
   width: 50px;
 }
 
 .comment-box {
-  width: 680px;
   display: flex;
   gap: 5px;
   background: #213131;
   padding: 5px;
-  position: fixed;
-  bottom: 0;
 }
 
 .comment-box > div {
@@ -549,6 +555,21 @@ button {
   right: 5px;
 }
 
+.empty {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  margin-bottom: 10px;
+  border: 3px solid;
+  font-size: 20px;
+}
+
+.empty > img {
+  height: 300px;
+  object-fit: cover;
+}
+
 #error-message {
   position: absolute;
   bottom: 15px;
@@ -557,13 +578,17 @@ button {
   font-weight: 900;
 }
 
+.items {
+  padding: 5px;
+}
+
 .cart-item {
   display: flex;
   flex-wrap: wrap;
   width: 800px;
   padding: 10px;
+  margin-bottom: 5px;
   gap: 10px;
-  margin-bottom: 10px;
   border: 2px solid;
 }
 
@@ -606,6 +631,35 @@ button {
 .quantity > p {
   width: 20px;
   text-align: center;
+}
+
+.cart-total {
+  border: 3px solid;
+  width: 100%;
+  padding: 10px;
+}
+
+.cart-total > h2 {
+  border-bottom: 2px solid;
+  padding-bottom: 5px;
+}
+
+.cart-total > button {
+  margin-bottom: 0;
+  width: 100%;
+}
+
+.cart-total > div {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.total {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
 }
 
 ::-webkit-scrollbar {

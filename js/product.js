@@ -178,8 +178,7 @@ function addComment() {
       if (xhr.status == 200) {
         const comments = document.getElementById("item-comments");
         comments.innerHTML = xhr.response;
-        window.scroll(0, 0);
-
+        window.scroll(0, comments.scrollHeight);
         comment.value = "";
       }
       isEditing = false;

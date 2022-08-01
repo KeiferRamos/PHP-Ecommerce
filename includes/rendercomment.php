@@ -14,7 +14,8 @@
             array_push($datas, $row);
         }
     }else{
-        echo "<div>
+        echo "<div class='empty'>
+                <img src='https://cdni.iconscout.com/illustration/premium/thumb/friends-discussing-product-comments-2706064-2259748.png' />
                 <p>Be the first one to comment!</p>
             </div>";
         return;
@@ -33,7 +34,7 @@
         }
 
         return "
-            <div>
+            <div class='comments-container'>
                 <img src={$imgSrc} alt='user-profile' />
                 <div class='user-comment'>
                     <h3>{$data['username']}</h3>
@@ -52,6 +53,7 @@
                         >
                         </i>
                     </div>
+                    <span>{$data['time']}</span>
                 </div>   
             </div>
         ";
@@ -60,9 +62,9 @@
     $sql3 = "SELECT * FROM comments WHERE item_id = $item_id;";
     $result3 = mysqli_query($conn, $sql3);
 
-    echo join("", $mappedDatas);
-
     if($check_result < mysqli_num_rows($result3)){
         echo "<button id='viewmore' onclick='viewMore()'>view more comments</button>";
     }
+
+    echo join("", $mappedDatas);
 ?>
