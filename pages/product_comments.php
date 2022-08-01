@@ -4,7 +4,7 @@
         include "../components/head.php";
     ?>
     <body onload="renderComments()">
-        <div class="wrapper" >
+        <div class="wrapper">
             <?php
                 include "../components/navbar.php";
             ?>

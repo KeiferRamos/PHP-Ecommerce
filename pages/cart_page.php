@@ -14,6 +14,12 @@
                 ?>
             </div>
         </div>
+        <?php
+            include "../components/modal.php";
+        ?>
+        <div class="arrow-up" onclick="scrollback()">
+            <i class="fa-solid fa-arrow-up"></i>
+        </div>
         <script src="../js/product.js??v=<?php echo time(); ?>"></script>
     </body>
 </html>

@@ -60,9 +60,9 @@
     $sql3 = "SELECT * FROM comments WHERE item_id = $item_id;";
     $result3 = mysqli_query($conn, $sql3);
 
+    echo join("", $mappedDatas);
+
     if($check_result < mysqli_num_rows($result3)){
         echo "<button id='viewmore' onclick='viewMore()'>view more comments</button>";
     }
-
-    echo join("", $mappedDatas);
 ?>

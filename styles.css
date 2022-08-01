@@ -49,7 +49,7 @@ button {
 
 button {
   background: #000;
-  color: #fff;
+  color: #e9e5e5;
   margin-top: 10px;
   border: 1px solid;
 }
@@ -133,7 +133,7 @@ button {
 
 .wrapper {
   max-width: 1200px;
-  padding: 10px;
+  position: relative;
 }
 
 .products {
@@ -336,7 +336,7 @@ button {
 
 .dark-mode {
   background: #000;
-  color: #fff;
+  color: #b0afaf;
 }
 
 .light-button {
@@ -349,6 +349,7 @@ button {
   flex-wrap: wrap;
   text-align: justify;
   gap: 10px;
+  padding: 5px;
 }
 
 .benifits,
@@ -451,12 +452,15 @@ button {
 
 .comments {
   gap: 10px;
-  padding: 10px 0;
+  padding: 5px;
+  min-height: calc(100% - 100px);
+  min-width: 680px;
 }
 
 .comments > a {
   width: 100%;
   display: flex;
+  height: auto;
   align-items: end;
   flex-wrap: wrap;
   gap: 10px;
@@ -467,13 +471,11 @@ button {
 }
 
 #item-comments {
-  height: auto;
   width: 100%;
   display: flex;
   gap: 10px;
-  flex-direction: column-reverse;
-  overflow: scroll;
-  margin-bottom: 10px;
+  flex-direction: column;
+  margin-bottom: 75px;
 }
 
 .comments header > img {
@@ -492,6 +494,8 @@ button {
 
 .user-comment > p {
   margin: 5px 0 20px 0;
+  word-break: break-all;
+  max-width: 600px;
 }
 
 .user-comment div > i {
@@ -508,12 +512,13 @@ button {
 }
 
 .comment-box {
-  width: 100%;
+  width: 680px;
   display: flex;
   gap: 5px;
   background: #213131;
   padding: 5px;
-  margin-bottom: 10px;
+  position: fixed;
+  bottom: 0;
 }
 
 .comment-box > div {
@@ -554,6 +559,7 @@ button {
 
 .cart-item {
   display: flex;
+  flex-wrap: wrap;
   width: 800px;
   padding: 10px;
   gap: 10px;
@@ -576,6 +582,30 @@ button {
   max-height: 90px;
   min-width: 200px;
   object-fit: cover;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  margin-left: auto;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.quantity > i {
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  border: 2px solid;
+  cursor: pointer;
+}
+
+.quantity > p {
+  width: 20px;
+  text-align: center;
 }
 
 ::-webkit-scrollbar {
@@ -602,9 +632,16 @@ button {
 }
 
 @media (max-width: 650px) {
-  .comments {
-    display: flex;
-    flex-wrap: wrap;
+  .comments a > img {
+    display: none;
+  }
+  .cart-item > img {
+    width: 100%;
+    max-height: 250px;
+  }
+  .comment-box {
+    width: 100%;
+    left: 0;
   }
 }
 
@@ -628,8 +665,5 @@ button {
   }
   .products {
     padding: 10px;
-  }
-  .comments header > img {
-    display: none;
   }
 }

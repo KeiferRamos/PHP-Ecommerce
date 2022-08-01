@@ -108,27 +108,7 @@ function addTocart() {
 
   xhr.onload = () => {
     if (xhr.status == 200) {
-      const { classList: m } = document.querySelector(".modal");
-      const { classList: l } = document.querySelector(".loading");
-      document.querySelector(".modal-text").textContent = xhr.response;
-
-      if (!m.contains("show-modal")) {
-        m.add("show-modal");
-      }
-
-      if (l.contains("start-loading")) {
-        l.remove("start-loading");
-        setTimeout(() => l.add("start-loading"), 100);
-      } else {
-        l.add("start-loading");
-      }
-
-      clearTimeout(timer);
-
-      timer = setTimeout(() => {
-        m.remove("show-modal");
-        l.remove("start-loading");
-      }, 4000);
+      showModal(xhr.response);
     }
   };
 
@@ -177,18 +157,29 @@ function addComment() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
-    const queryString = `comment=${comment.value}&id=${id}&limit=${limit}&itemID=${id}&commentId=${commentID}`;
+    const queryString = `comment=${comment.value}&id=${id}&itemID=${id}&commentId=${commentID}`;
 
     if (isEditing) {
-      xhr.open("POST", `../includes/update_comment.php?${queryString}`, true);
+      xhr.open(
+        "POST",
+        `../includes/update_comment.php?${queryString}&limit=${limit}`,
+        true
+      );
     } else {
       limit += 1;
-      xhr.open("POST", `../includes/add_comment.php?${queryString}`, true);
+      xhr.open(
+        "POST",
+        `../includes/add_comment.php?${queryString}&limit=${limit}`,
+        true
+      );
     }
 
     xhr.onload = () => {
       if (xhr.status == 200) {
-        document.getElementById("item-comments").innerHTML = xhr.response;
+        const comments = document.getElementById("item-comments");
+        comments.innerHTML = xhr.response;
+        window.scroll(0, 0);
+
         comment.value = "";
       }
       isEditing = false;
@@ -250,7 +241,9 @@ function renderComments() {
 
   xhr.onload = () => {
     if (xhr.status == 200) {
-      document.getElementById("item-comments").innerHTML = xhr.response;
+      const comments = document.getElementById("item-comments");
+      comments.innerHTML = xhr.response;
+      window.scroll(0, comments.scrollHeight);
     }
   };
 
@@ -260,8 +253,6 @@ function renderComments() {
 function viewMore() {
   limit += 2;
   renderComments();
-  const comments = document.getElementById("item-comments");
-  window.scrollTo(0, comments.scrollHeight);
 }
 
 function removeItem() {
@@ -280,6 +271,66 @@ function removeItem() {
   };
 
   xhr.send();
+}
+
+function addQuantity(type) {
+  const {
+    dataset: { id, name },
+  } = window.event.target.parentElement;
+  console.log(name);
+
+  const countEl = document.getElementById(id);
+  const count = +countEl.textContent;
+
+  if (count >= 10 && type == "inc") {
+    showModal("you reached the limit");
+  } else if (count <= 1 && type == "dec") {
+    removeItem();
+  } else {
+    const xhr = new XMLHttpRequest();
+    const queryString = `../includes/add_quantity.php?id=${id}`;
+
+    if (type == "dec") {
+      xhr.open("POST", `${queryString}&count=${count - 1}`, true);
+    } else {
+      xhr.open("POST", `${queryString}&count=${count + 1}`, true);
+    }
+
+    xhr.onload = () => {
+      if (xhr.status == 200) {
+        countEl.textContent = xhr.response;
+        const totalPriceEl = document.getElementById(name);
+        const totalPrice = +totalPriceEl.dataset.price;
+        totalPriceEl.textContent = `₱ ${+xhr.response * totalPrice}.00`;
+      }
+    };
+
+    xhr.send();
+  }
+}
+
+function showModal(text) {
+  const { classList: m } = document.querySelector(".modal");
+  const { classList: l } = document.querySelector(".loading");
+  document.querySelector(".modal-text").textContent = text;
+
+  if (!m.contains("show-modal")) {
+    m.add("show-modal");
+  }
+
+  if (l.contains("start-loading")) {
+    l.remove("start-loading");
+    setTimeout(() => l.add("start-loading"), 100);
+  } else {
+    l.add("start-loading");
+  }
+
+  clearTimeout(timer);
+
+  timer = setTimeout(() => {
+    m.remove("show-modal");
+    l.remove("start-loading");
+  }, 4000);
 }
 
 window.addEventListener("DOMContentLoaded", () => {

@@ -51,7 +51,7 @@
                                 id='reviews' 
                                 class='{$is_liked}' 
                                 onclick='likeItem({$data['id']})'
-                                >
+                            >
                                 <i id='reviews' class='fa-solid fa-heart'></i>
                                 <span id='{$data['id']}' class='likes-count'>
                                     {$likes}
