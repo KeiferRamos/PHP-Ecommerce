@@ -266,12 +266,11 @@ function removeItem() {
   xhr.onload = () => {
     if (xhr.status == 200) {
       document.getElementById("cart-items").innerHTML = xhr.response;
+      getCartTotal();
     }
   };
 
   xhr.send();
-
-  getCartTotal();
 }
 
 function addQuantity(type) {
@@ -302,12 +301,11 @@ function addQuantity(type) {
         const totalPriceEl = document.getElementById(name);
         const totalPrice = +totalPriceEl.dataset.price;
         totalPriceEl.textContent = `₱ ${+xhr.response * totalPrice}.00`;
+        getCartTotal();
       }
     };
 
     xhr.send();
-
-    getCartTotal();
   }
 }
 

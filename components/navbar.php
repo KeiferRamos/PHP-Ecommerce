@@ -28,10 +28,10 @@
             <?php 
                 echo "<p class='username settings'>{$_SESSION['username']}</p>"
             ?>
-            <div>
+            <a href="../pages/edit_page.php">
                 <i class="fa-solid fa-user"></i>
                 <p>edit profile</p>
-            </div>
+            </a>
             <div id="toggler" onclick="toggleSettings()">
                 <i class="fa-solid fa-moon"></i>
                 <p>dark mode</p>
