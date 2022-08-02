@@ -39,19 +39,15 @@
             return "
                 <div class='cart-item'>
                     <img src='{$encoder},{$imagecontent}' alt='product image'/>
-                    <div class='cartitem-info'>
+                    <div class='cartitem-info' data-id='{$item_id}'>
                         <h4>{$data['name']}</h4>
                         <p 
                             id='{$data['name']}' 
                             data-price='{$data['price']}'
-                            onchange='getCartTotal()'
                         >
                             ₱ {$total_price}.00
                         </p>
-                        <button 
-                            data-id='{$item_id}'
-                            onclick='removeItem()'
-                        >
+                        <button onclick='removeItem()'>
                             remove
                         </button>
                     </div>

@@ -284,10 +284,8 @@ function addQuantity(type) {
 
   if (count >= 10 && type == "inc") {
     showModal("you reached the limit");
-    return;
   } else if (count <= 1 && type == "dec") {
     removeItem();
-    return;
   } else {
     const xhr = new XMLHttpRequest();
     const queryString = `../includes/add_quantity.php?id=${id}`;
