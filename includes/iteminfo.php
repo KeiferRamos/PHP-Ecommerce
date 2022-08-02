@@ -3,7 +3,7 @@
 
     if(isset($_GET['id'])){
 
-        $sql = "SELECT * FROM products WHERE id = {$_GET['id']};";
+        $sql = "SELECT * FROM products WHERE item_id = {$_GET['id']};";
         $result = mysqli_query($conn, $sql);
         $check_result = mysqli_num_rows($result);
 
@@ -22,7 +22,7 @@
                                     class='add-btn' 
                                     onclick='addTocart()'
                                     data-url='../includes/addItem.php'
-                                    data-id='{$row['id']}'>
+                                    data-id='{$row['item_id']}'>
                                         add to cart
                                 </button>
                             </header>

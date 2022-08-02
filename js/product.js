@@ -259,7 +259,7 @@ function removeItem() {
 
   const {
     dataset: { id },
-  } = window.event.target;
+  } = window.event.target.parentElement;
 
   xhr.open("POST", `../includes/removeItem.php?item_id=${id}`, true);
 
@@ -270,21 +270,24 @@ function removeItem() {
   };
 
   xhr.send();
+
+  getCartTotal();
 }
 
 function addQuantity(type) {
   const {
     dataset: { id, name },
   } = window.event.target.parentElement;
-  console.log(name);
 
   const countEl = document.getElementById(id);
   const count = +countEl.textContent;
 
   if (count >= 10 && type == "inc") {
     showModal("you reached the limit");
+    return;
   } else if (count <= 1 && type == "dec") {
     removeItem();
+    return;
   } else {
     const xhr = new XMLHttpRequest();
     const queryString = `../includes/add_quantity.php?id=${id}`;
@@ -305,6 +308,8 @@ function addQuantity(type) {
     };
 
     xhr.send();
+
+    getCartTotal();
   }
 }
 
@@ -330,6 +335,20 @@ function showModal(text) {
     m.remove("show-modal");
     l.remove("start-loading");
   }, 4000);
+}
+
+function getCartTotal() {
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("GET", "../includes/cart_total.php", true);
+
+  xhr.onload = () => {
+    if (xhr.status == 200) {
+      document.getElementById("cart-total").innerHTML = xhr.response;
+    }
+  };
+
+  xhr.send();
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -373,5 +392,16 @@ window.addEventListener("scroll", () => {
     arrow.classList.add("show-arrow");
   } else {
     arrow.classList.remove("show-arrow");
+  }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const path = window.location.pathname.split("/");
+  const path_name = path[path.length - 1];
+  if (path_name == "product_page.php") {
+    document.getElementById("home").classList.add("active");
+  }
+  if (path_name == "cart_page.php") {
+    document.getElementById("cart").classList.add("active");
   }
 });

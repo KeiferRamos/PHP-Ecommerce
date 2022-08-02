@@ -4,7 +4,11 @@
     $item_id = $_REQUEST['itemID'];
     $limit = $_REQUEST['limit'];
     
-    $sql1 = "SELECT * FROM comments WHERE item_id = $item_id ORDER BY comment_id DESC LIMIT $limit;";
+    $sql1 = "SELECT * FROM comments 
+            WHERE item_id = $item_id 
+            ORDER BY comment_id DESC 
+            LIMIT $limit;";
+            
     $result = mysqli_query($conn, $sql1);
     $check_result = mysqli_num_rows($result);
     $datas = [];

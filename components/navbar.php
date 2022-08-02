@@ -3,12 +3,12 @@
         <h1>Ecommerce</h1>
     </header>
     <ul class="link-list">
-        <li>
+        <li id="home">
             <a href="product_page.php">
                 home
             </a>
         </li>
-        <li>
+        <li id="cart">
             <a href="cart_page.php">
                 cart
             </a>

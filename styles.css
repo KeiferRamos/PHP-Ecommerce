@@ -567,6 +567,7 @@ button {
 
 .empty > img {
   height: 300px;
+  max-width: 300px;
   object-fit: cover;
 }
 
@@ -637,6 +638,7 @@ button {
   border: 3px solid;
   width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
 }
 
 .cart-total > h2 {
@@ -659,6 +661,10 @@ button {
 
 .total {
   border-top: 2px solid;
+  border-bottom: 2px solid;
+}
+
+.active {
   border-bottom: 2px solid;
 }
 

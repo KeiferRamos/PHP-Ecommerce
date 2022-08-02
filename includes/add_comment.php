@@ -10,6 +10,7 @@
     $item_id = $_REQUEST['id'];
     $limit = $_REQUEST['limit'];
     $date_now = date('m-d-Y',time());
+    date_default_timezone_set("Asia/Singapore");
     $time_now = date("H:ia");
     $date_time = "{$date_now}  {$time_now}";
 
