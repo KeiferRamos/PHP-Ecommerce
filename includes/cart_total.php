@@ -50,9 +50,9 @@
         </div>
         <div class='total'>
             <p>Total</p>
-            <p>₱ {$cart_total}.00</p>
+            <p id='cart-total'>₱ {$cart_total}.00</p>
         </div>
-        <button>Checkout</button>";
+        <button onclick='checkOutItem()'>Checkout</button>";
     }
     
 ?>

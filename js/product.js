@@ -347,6 +347,17 @@ function getCartTotal() {
   xhr.send();
 }
 
+function checkOutItem() {
+  const checkOutModal = document.querySelector(".checkout-modal");
+  checkOutModal.classList.add("show-checkout");
+
+  checkOutModal.addEventListener("click", ({ target }) => {
+    if (target.classList.contains("checkout-modal")) {
+      checkOutModal.classList.remove("show-checkout");
+    }
+  });
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   const isDarkmode = localStorage.getItem("isDarkmode");
   const isDark = isDarkmode ? JSON.parse(isDarkmode) : false;
