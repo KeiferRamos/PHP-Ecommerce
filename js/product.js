@@ -358,6 +358,43 @@ function checkOutItem() {
   });
 }
 
+function confirmCheckout() {
+  window.event.preventDefault();
+
+  const inputs = document.querySelectorAll(".checkout-form > input");
+  const warningText = document.querySelector(".warning-text > p");
+  const hasInputs = Array.from(inputs).every((input) => input.value);
+  const info = {};
+
+  if (hasInputs) {
+    inputs.forEach(({ id, value }) => (info[id] = value));
+
+    const query = new URLSearchParams(info).toString();
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("POST", `../includes/checkout_cart.php?${query}`, true);
+
+    xhr.onload = () => {
+      if (xhr.status == 200) {
+        getCartTotal();
+        document
+          .querySelector(".checkout-modal")
+          .classList.remove("show-checkout");
+        document.getElementById("cart-items").innerHTML = xhr.response;
+      }
+    };
+
+    xhr.send();
+  } else {
+    warningText.textContent = "All fields are required!";
+  }
+
+  setTimeout(() => {
+    warningText.textContent = "";
+  }, 1800);
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   const isDarkmode = localStorage.getItem("isDarkmode");
   const isDark = isDarkmode ? JSON.parse(isDarkmode) : false;

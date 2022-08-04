@@ -8,7 +8,11 @@
     $item_id = $_REQUEST['id'];
     $user_id = $_SESSION['id'];
 
-    $sql1 = "SELECT * FROM orders WHERE item_id = $item_id AND customer_id = $user_id;";
+    $sql1 = "SELECT * FROM orders 
+            WHERE item_id = $item_id 
+            AND customer_id = $user_id 
+            AND order_status <> 'checkouted';";
+
     $result = mysqli_query($conn, $sql1);
     $check_result = mysqli_num_rows($result);
 

@@ -10,7 +10,8 @@
             FROM orders o 
             JOIN products p 
             ON p.item_id = o.item_id 
-            AND o.customer_id = $user_id;";
+            AND o.customer_id = $user_id 
+            AND o.order_status <> 'checkouted';";
 
     $result = mysqli_query($conn, $sql);
     $check_result = mysqli_num_rows($result);

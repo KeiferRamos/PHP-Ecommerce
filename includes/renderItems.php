@@ -44,7 +44,8 @@
                             class='add-btn' 
                             onclick='addTocart()'
                             data-url='../includes/addItem.php'
-                            data-id='{$item_id}'>
+                            data-id='{$item_id}'
+                        >
                                 add to cart
                         </button>
                         <div>

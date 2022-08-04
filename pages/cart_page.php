@@ -16,18 +16,9 @@
             <div class="cart-total" id="cart-total">
             </div>
             <div class="checkout-modal">
-                <div>
-                    <h1>Please Complete this form</h1>
-                    <input type="text" placeholder="First name">
-                    <input type="text" placeholder="Last name">
-                    <input type="text" placeholder="Complete Address">
-                    <input type="text" placeholder="contact number">
-                    <input type="text" placeholder="email">
-                    <button>Check out</button>
-                    <div class="warning-text">
-                         <p>all fields are required</p>
-                    </div>
-                </div>
+               <?php
+                    include "../components/form.php";
+               ?>
             </div>
         </div>
         <?php

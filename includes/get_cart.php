@@ -11,7 +11,7 @@
             FROM orders o 
             JOIN products p 
             ON p.item_id = o.item_id 
-            AND o.customer_id = $user_id;";
+            AND o.customer_id = $user_id AND order_status <> 'checkouted';";
 
     $result = mysqli_query($conn, $sql);
     $check_result = mysqli_num_rows($result);
@@ -52,9 +52,17 @@
                         </button>
                     </div>
                     <div class='quantity' data-id='$item_id' data-name='{$data['name']}'>
-                        <i onclick='addQuantity(`dec`)' class='fa-solid fa-angle-left'></i>
+                        <i 
+                            onclick='addQuantity(`dec`)' 
+                            class='fa-solid fa-angle-left'
+                        >
+                        </i>
                         <p id='$item_id'>{$data['quantity']}</p>
-                        <i onclick='addQuantity(`inc`)' class='fa-solid fa-angle-right'></i>
+                        <i 
+                            onclick='addQuantity(`inc`)' 
+                            class='fa-solid fa-angle-right'
+                        >
+                        </i>
                     </div>
                 </div>";
     }, $datas);

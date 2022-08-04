@@ -73,6 +73,6 @@
                 </div>
             </form>
         </div>
-        <script src="./js/login.js?v=<?php echo time(); ?>"></script>
+        <script src="./js/user.js?v=<?php echo time(); ?>"></script>
     </body>
 </html>

@@ -10,12 +10,18 @@
     $customer_id = $_SESSION['id'];
 
     $sql = "UPDATE orders 
-    SET quantity = '$quantity'
-    WHERE item_id = {$item_id} AND customer_id = {$customer_id};";
+            SET quantity = '$quantity'
+            WHERE item_id = {$item_id} 
+            AND customer_id = {$customer_id} 
+            AND order_status <> 'checkouted';";
 
     mysqli_query($conn, $sql);
     
-    $sql2 = "SELECT * FROM orders WHERE item_id = $item_id AND customer_id = {$customer_id};";
+    $sql2 = "SELECT * FROM orders 
+            WHERE item_id = $item_id 
+            AND customer_id = {$customer_id}
+            AND order_status <> 'checkouted';";
+            
     $result = mysqli_query($conn, $sql2);
     $check_result = mysqli_num_rows($result);
 
