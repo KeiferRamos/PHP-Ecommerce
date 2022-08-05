@@ -743,8 +743,8 @@ input[placeholder="Complete Address"],
 
 .user-info div > input {
   min-width: 300px;
-  background: none;
-  border-bottom: 1px solid;
+  outline: none;
+  margin-top: 10px;
 }
 
 .user-info div > input[type="checkbox"] {

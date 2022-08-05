@@ -15,7 +15,7 @@
             </div>
             <div class="cart-total" id="cart-total">
             </div>
-            <div class="checkout-modal">
+            <div class="checkout-modal" onload="updateHandler()">
                <?php
                     include "../components/form.php";
                ?>

@@ -8,6 +8,7 @@
     $user_id = $_SESSION['id'];
 
     $sql = "SELECT * FROM user_info WHERE customer_id = $user_id;";
+    
     $result = mysqli_query($conn, $sql);
     $check_result = mysqli_num_rows($result);
 

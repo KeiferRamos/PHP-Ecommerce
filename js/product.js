@@ -1,5 +1,6 @@
 let timer;
 let isEditing = false;
+let isUpdated = false;
 let commentID;
 let limit = 2;
 
@@ -368,6 +369,7 @@ function confirmCheckout() {
 
   if (hasInputs) {
     inputs.forEach(({ id, value }) => (info[id] = value));
+    info["isUpdated"] = isUpdated;
 
     const query = new URLSearchParams(info).toString();
 
@@ -382,6 +384,9 @@ function confirmCheckout() {
           .querySelector(".checkout-modal")
           .classList.remove("show-checkout");
         document.getElementById("cart-items").innerHTML = xhr.response;
+        document.getElementById("cart-text").textContent =
+          "Thank you for shopping!";
+        console.log(isUpdated);
       }
     };
 
@@ -394,6 +399,13 @@ function confirmCheckout() {
     warningText.textContent = "";
   }, 1800);
 }
+
+(function updateHandler() {
+  const inputs = document.querySelectorAll(".checkout-form > input");
+  inputs.forEach((input) => {
+    input.addEventListener("change", () => (isUpdated = true));
+  });
+})();
 
 window.addEventListener("DOMContentLoaded", () => {
   const isDarkmode = localStorage.getItem("isDarkmode");
