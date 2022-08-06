@@ -744,11 +744,25 @@ input[placeholder="Complete Address"],
 .user-info div > input {
   min-width: 300px;
   outline: none;
-  margin-top: 10px;
+}
+
+.user-info div > p {
+  margin-bottom: 10px;
 }
 
 .user-info div > input[type="checkbox"] {
   min-width: auto;
+}
+
+.update-input {
+  position: relative;
+}
+
+.update-input > i {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translate(0, -50%);
 }
 
 ::-webkit-scrollbar {

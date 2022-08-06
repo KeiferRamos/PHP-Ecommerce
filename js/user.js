@@ -1,7 +1,7 @@
 const inputs = document.querySelectorAll("input");
 const checkbox = document.getElementById("checkbox");
 const labels = document.querySelectorAll(".label");
-const updated = "";
+const isUpdating = false;
 
 inputs.forEach((input) => {
   input.addEventListener("input", ({ target }) => {
@@ -32,9 +32,6 @@ checkbox.addEventListener("click", ({ target }) => {
 
 (function updateHandler() {
   const inputs = document.querySelectorAll(".update-input > input");
-  inputs.forEach((input) => {
-    console.log(input);
-  });
 })();
 
 window.addEventListener("DOMContentLoaded", () => {
