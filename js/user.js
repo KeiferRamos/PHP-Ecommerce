@@ -25,6 +25,55 @@ function checkInput(target) {
   }
 }
 
+function updateInfo() {
+  const { id } = window.event.target.dataset;
+  const EltoUpdate = document.getElementById(id);
+  const confirm = document.getElementById("confirm");
+  const warningText = document.querySelector(".warning-text");
+  if (EltoUpdate.readOnly) {
+    EltoUpdate.value = "";
+    EltoUpdate.readOnly = false;
+    EltoUpdate.focus();
+    if (id == "password") {
+      confirm.value = "";
+    }
+  } else {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open(
+      "POST",
+      `../includes/update_info.php?update=${EltoUpdate.value}&toUpdate=${id}`,
+      true
+    );
+
+    xhr.onload = () => {
+      if (id == "password") {
+        if (confirm.value != EltoUpdate.value) {
+          warningText.textContent = "password does not match";
+        } else if (EltoUpdate.value.length < 8) {
+          warningText.textContent = "password must be atleast 8 char long!";
+        } else {
+          warningText.textContent = xhr.response;
+          EltoUpdate.readOnly = true;
+        }
+      }
+
+      if (id == "username") {
+        if (EltoUpdate.value.length >= 5) {
+          warningText.textContent = xhr.response;
+          if (xhr.response != "username already in used!") {
+            EltoUpdate.readOnly = true;
+          }
+        } else {
+          warningText.textContent = "Username must be atleast 5 char long!";
+        }
+      }
+    };
+
+    xhr.send();
+  }
+}
+
 checkbox.addEventListener("click", ({ target }) => {
   const password = document.getElementById("password");
   password.type = target.checked ? "text" : "password";
